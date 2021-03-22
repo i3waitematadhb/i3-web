@@ -1,0 +1,177 @@
+<?php
+
+namespace {
+
+    use SilverStripe\Control\HTTPRequest;
+    use SilverStripe\SiteConfig\SiteConfig;
+
+    class AjaxController extends AbstractApiController
+    {
+        private static $allowed_actions = [
+            'getAllProjects',
+            'getProjectsByFilter',
+            'getAllQualityImprovementSessions',
+            'getAllQualityImprovementSessionsByFilter',
+        ];
+
+        public function getAllProjects(HTTPRequest $request)
+        {
+            $output = [];
+            $pageType = $request->postVar('type');
+
+            $projectPages = '';
+
+            if ($pageType == 'project') {
+                $projectPages = ProjectPage::get();
+            } else {
+                $projectPages = QIProjectPage::get();
+            }
+
+            $config = SiteConfig::current_site_config();
+            $configTitle = $config->Title;
+
+            $placeholderImage = '/_resources/themes/starter/images/PlaceholderImage.png?m=1571187475';
+
+            foreach ($projectPages as $page) {
+                $projectPageCategories = $page->Categories();
+                $page->FeaturedImage->URL ? $image = $page->FeaturedImage->URL : $image = $placeholderImage;
+                $pageCategories = [];
+
+                foreach ($projectPageCategories as $pageCategory) {
+                    $pageCategories [] = $pageCategory->Name;
+                }
+
+                $output[] = [
+                    'title' => $page->Title,
+                    'year'  => $page->Year,
+                    'link'  => $page->Link(),
+                    'image' => $image,
+                    'imageAlt'  => $page->Title . ' - ' . $configTitle,
+                    'categories'=> $pageCategories
+                ];
+            }
+            return $this->jsonOutput($output);
+        }
+
+        public function getProjectsByFilter(HTTPRequest $request)
+        {
+            $output = [];
+            $config = SiteConfig::current_site_config();
+            $configTitle = $config->Title;
+
+            $selectedCategories = json_decode($request->postVar('categories'));
+            $selectedYear       = $request->postVar('year');
+            $pageType           = $request->postVar('type');
+
+            $placeholderImage = '/_resources/themes/starter/images/PlaceholderImage.png?m=1571187475';
+
+            if ($pageType == 'project') {
+                $projectPages = ProjectPage::get();
+            } else {
+                $projectPages = QIProjectPage::get();
+            }
+
+            foreach ($projectPages as $page)
+            {
+                $projectPageCategories = $page->Categories();
+                $page->FeaturedImage->URL ? $image = $page->FeaturedImage->URL : $image = $placeholderImage;
+                $pageCategories = [];
+
+                $imageAlt = $page->Title . ' - ' . $configTitle;
+
+                foreach ($projectPageCategories as $category) {
+                    $pageCategories [] = $category->Name;
+                }
+
+                if ($selectedYear !== 'All') {
+                    if ($selectedYear === $page->Year) {
+                        $result = $this->filterResult($selectedCategories, $pageCategories, $page, $image, $imageAlt);
+                        if (count($result)) {
+                            $output[] = $result;
+                        }
+                    }
+                } else {
+                    $result = $this->filterResult($selectedCategories, $pageCategories, $page, $image, $imageAlt);
+                    if (count($result)) {
+                        $output[] = $result;
+                    }
+                }
+            }
+            return $this->jsonOutput($output);
+        }
+
+        public function filterResult($selectedCategories, $pageCategories, $page, $image, $imageAlt)
+        {
+            $output = [];
+            if (count($selectedCategories)) {
+                if (count($pageCategories)) {
+                    if (count(array_diff($selectedCategories, $pageCategories)) < 1) {
+                        $output = [
+                            'title' => $page->Title,
+                            'year'  => $page->Year,
+                            'link'  => $page->Link(),
+                            'image' => $image,
+                            'imageAlt'   => $imageAlt,
+                            'categories' => $pageCategories
+                        ];
+                    }
+                }
+            } else {
+                $output = [
+                    'title' => $page->Title,
+                    'year'  => $page->Year,
+                    'link'  => $page->Link(),
+                    'image' => $image,
+                    'imageAlt'   => $imageAlt,
+                    'categories' => $pageCategories
+                ];
+            }
+            return $output;
+        }
+
+        public function getAllQualityImprovementSessions(HTTPRequest $request)
+        {
+            $output = [];
+            $sessionPages = QISessionPage::get();
+
+            $config = SiteConfig::current_site_config();
+            $configTitle = $config->Title;
+
+            $placeholderImage = '/_resources/themes/starter/images/PlaceholderImage.png?m=1571187475';
+
+            foreach ($sessionPages as $page) {
+                $sessionPageCategories = $page->Categories();
+                $sessionPageAuthors    = $page->Authors();
+                $page->FeaturedImage->URL ? $image = $page->FeaturedImage->URL : $image = $placeholderImage;
+                $pageCategories = [];
+                $pageAuthors    = [];
+
+                foreach ($sessionPageCategories as $pageCategory) {
+                    $pageCategories [] = $pageCategory->Name;
+                }
+
+                foreach ($sessionPageAuthors as $pageAuthor) {
+                    $pageAuthors [] = $pageAuthor->Title;
+                }
+
+                $date = new DateTime($page->Date);
+                $formattedDate = date_format($date, 'M d, Y');
+
+                $output[] = [
+                    'title' => $page->Title,
+                    'date'  => $formattedDate,
+                    'time'  => $page->Time,
+                    'location' => $page->Location,
+                    'summary'  => $page->ContentSummary,
+                    'link'  => $page->Link(),
+                    'image' => $image,
+                    'imageAlt'  => $page->Title . ' - ' . $configTitle,
+                    'authors'   => $pageAuthors,
+                    'categories'=> $pageCategories
+                ];
+            }
+
+            return $this->jsonOutput($output);
+        }
+    }
+}
