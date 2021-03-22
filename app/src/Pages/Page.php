@@ -37,17 +37,17 @@ namespace {
                     'title' => 'Section Width',
                     'callback' => function($record, $column, $grid) {
                         $fields = DropdownField::create($column, $column, array(
-                            'col-md-2' => '16%',
-                            'col-md-3' => '25%',
-                            'col-md-4' => '33%',
-                            'col-md-5' => '41%',
-                            'col-md-6' => '50%',
-                            'col-md-7' => '58%',
-                            'col-md-8' => '66%',
-                            'col-md-9' => '75%',
-                            'col-md-10' => '83%',
-                            'col-md-11' => '91%',
-                            'col-md-12' => '100%',
+                            'col-lg-2' => '16%',
+                            'col-lg-3' => '25%',
+                            'col-lg-4' => '33%',
+                            'col-lg-5' => '41%',
+                            'col-lg-6' => '50%',
+                            'col-lg-7' => '58%',
+                            'col-lg-8' => '66%',
+                            'col-lg-9' => '75%',
+                            'col-lg-10' => '83%',
+                            'col-lg-11' => '91%',
+                            'col-lg-12' => '100%',
                         ));
                         return $fields;
                     }
