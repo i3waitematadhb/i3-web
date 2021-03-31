@@ -4,6 +4,7 @@ namespace {
 
     use SilverStripe\AssetAdmin\Forms\UploadField;
     use SilverStripe\Assets\Image;
+    use SilverStripe\Forms\CheckboxField;
     use SilverStripe\Forms\DropdownField;
     use SilverStripe\Forms\FieldList;
     use SilverStripe\Forms\HTMLEditor\HTMLEditorField;
@@ -16,7 +17,8 @@ namespace {
             'Content'         => 'HTMLText',
             'ContentPosition' => 'Varchar',
             'ImageOverlay'    => 'Varchar',
-            'ImageHeight'     => 'Varchar'
+            'ImageHeight'     => 'Varchar',
+            'IsParallax'      => 'Boolean',
         ];
 
         private static $has_one = [
@@ -35,6 +37,7 @@ namespace {
         {
             $fields->addFieldToTab('Root.Main', UploadField::create('Image', 'Banner image')
                 ->setFolderName('Banner/Images'));
+            $fields->addFieldToTab('Root.Main', CheckboxField::create('IsParallax', 'Enable image parallax'));
             $fields->addFieldToTab('Root.Main', DropdownField::create('ImageHeight', 'Image height',
                 array(
                     'small' => 'Small',
