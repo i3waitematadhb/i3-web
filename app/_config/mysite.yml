@@ -12,6 +12,9 @@ SilverStripe\Forms\HTMLEditor\TinyMCEConfig:
 Silverstripe\SiteConfig\SiteConfig:
   extensions:
     - SiteConfigExtension
+Silverstripe\Security\Member:
+  extensions:
+    - MemberExtension
 CWP\CWP\PageTypes\NewsPage:
   extensions:
     - NewsPageExtension
