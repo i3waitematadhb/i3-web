@@ -64,7 +64,7 @@ namespace {
         private static $summary_fields = [
             'Name',
             'SectionWidth',
-            'SectionType',
+            'DisplaySectionType' => 'Section Type',
             'SectionHeaderReadable' => 'Show section header',
             'Status'
         ];
