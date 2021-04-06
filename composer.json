@@ -17,7 +17,8 @@
         "tractorcow/silverstripe-colorpicker": "^4@dev",
         "tractorcow/silverstripe-sliderfield": "dev-master",
         "symbiote/silverstripe-multivaluefield": "^5.0",
-        "jinjie/codeeditorfield": "^0.0.4"
+        "jinjie/codeeditorfield": "^0.0.4",
+        "silverstripe/tagfield": "2.3.*"
     },
     "require-dev": {
         "sminnee/phpunit": "^5.7",
