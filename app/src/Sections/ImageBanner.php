@@ -16,6 +16,7 @@ namespace {
         private static $db = [
             'Content'         => 'HTMLText',
             'ContentPosition' => 'Varchar',
+            'ImageAnimation'  => 'Varchar',
             'ImageOverlay'    => 'Varchar',
             'ImageHeight'     => 'Varchar',
             'IsParallax'      => 'Boolean',
@@ -60,6 +61,8 @@ namespace {
                     'light'=> 'Light'
                 )
             ));
+            $fields->addFieldToTab('Root.Main', DropdownField::create('ImageAnimation', 'Animation',
+                Animation::get()->filter('Archived', false)->map('Name', 'Name')));
         }
     }
 }
