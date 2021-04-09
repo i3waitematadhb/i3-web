@@ -617,12 +617,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/i3waitematadhb/cwp-starter-theme.git",
-                "reference": "b7b87ecd5c1d8e1fe3b1d4cd2dd490033960aafd"
+                "reference": "2bcd37dfcf483ac13c6de82e73d5fe44e2785392"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/i3waitematadhb/cwp-starter-theme/zipball/b7b87ecd5c1d8e1fe3b1d4cd2dd490033960aafd",
-                "reference": "b7b87ecd5c1d8e1fe3b1d4cd2dd490033960aafd",
+                "url": "https://api.github.com/repos/i3waitematadhb/cwp-starter-theme/zipball/2bcd37dfcf483ac13c6de82e73d5fe44e2785392",
+                "reference": "2bcd37dfcf483ac13c6de82e73d5fe44e2785392",
                 "shasum": ""
             },
             "require": {
@@ -655,7 +655,7 @@
             "support": {
                 "source": "https://github.com/i3waitematadhb/cwp-starter-theme/tree/i3-theme"
             },
-            "time": "2021-04-06T03:36:09+00:00"
+            "time": "2021-04-07T07:03:44+00:00"
         },
         {
             "name": "doctrine/instantiator",
