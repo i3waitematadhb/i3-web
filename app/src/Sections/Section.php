@@ -99,15 +99,16 @@ namespace {
 
             if ($this->SectionType == 'Section') {
                 $fields->addFieldToTab('Root.Main', HTMLEditorField::create('Content'));
-                $fields->addFieldToTab('Root.Main', DropdownField::create('ContentWidth', 'Select content width',
-                    array(
-                        'container-fluid p-0' => 'Full width',
-                        'container p-0'       => 'Fix width'
-                    )
-                ));
                 $fields->addFieldToTab('Root.Main', DropdownField::create('ContentAnimation', 'Select content animation',
                     Animation::get()->filter('Archived', false)->map('Name', 'Name')));
             }
+
+            $fields->addFieldToTab('Root.Main', DropdownField::create('ContentWidth', 'Select content width',
+                array(
+                    'container-fluid p-0' => 'Full width',
+                    'container p-0'       => 'Fix width'
+                )
+            ));
 
             /**
              * Section Settings
