@@ -18,10 +18,12 @@ namespace {
         ];
 
         private static $has_one = [
+            'ExtraImage' => File::class,
             'Video' => File::class
         ];
 
         private static $owns = [
+            'ExtraImage',
             'Video'
         ];
 
@@ -37,6 +39,8 @@ namespace {
                     'right-content'  => 'Right'
                 )
             ));
+            $fields->addFieldToTab('Root.Main', UploadField::create('ExtraImage')
+                ->setFolderName('Banner/ExtraImages'));
         }
     }
 }
