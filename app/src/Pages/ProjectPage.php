@@ -17,9 +17,10 @@ namespace {
         private static $icon_class = 'font-icon-block-content';
 
         private static $db = [
-            'Year' => 'Varchar(255)',
-            'PageBannerContent' => 'HTMLText',
-            'Authors' => 'Text',
+            'Year'            => 'Varchar(255)',
+            'AboutTheProject' => 'HTMLText',
+            'PreContent'      => 'HTMLText',
+            'Authors'         => 'Text',
         ];
 
         private static $has_one = [
@@ -48,7 +49,8 @@ namespace {
                 ->setFolderName('ProjectPage/Featured_Images'),'Sections');
             $fields->addFieldToTab('Root.ExtraContent', UploadField::create('PageBanner')
                 ->setFolderName('ProjectPage/Banner_Images'), 'Sections');
-            $fields->addFieldToTab('Root.ExtraContent', HTMLEditorField::create('PageBannerContent'));
+            $fields->addFieldToTab('Root.ExtraContent', HTMLEditorField::create('AboutTheProject', 'About the project'));
+            $fields->addFieldToTab('Root.ExtraContent', HTMLEditorField::create('PreContent', 'Pre content'));
             $fields->addFieldToTab('Root.Main', StringTagField::create('Authors', 'Author/s',
                 StaffPage::get(), explode(',', $this->Authors))->setCanCreate(true), 'FeaturedImage');
             $fields->addFieldToTab('Root.Main', TagField::create('Categories', 'Categories',
