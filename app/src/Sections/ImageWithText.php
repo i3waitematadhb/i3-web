@@ -17,7 +17,6 @@ namespace {
         private static $db = [
             'Content'            => 'HTMLText',
             'ContentPosition'    => 'Varchar',
-            'ContentBgColor'     => Color::class,
             'GradientBackground' => 'Boolean'
         ];
 
