@@ -30,7 +30,7 @@ namespace {
             $config = SiteConfig::current_site_config();
             $configTitle = $config->Title;
 
-            $placeholderImage = '/_resources/themes/starter/images/PlaceholderImage.png?m=1571187475';
+            $placeholderImage = '_resources/themes/starter/images/PlaceholderImage.png';
 
             foreach ($projectPages as $page) {
                 $projectPageCategories = $page->Categories();
@@ -38,7 +38,7 @@ namespace {
                 $pageCategories = [];
 
                 foreach ($projectPageCategories as $pageCategory) {
-                    $pageCategories [] = $pageCategory->Name;
+                    $pageCategories [] = $pageCategory->Title;
                 }
 
                 $output[] = [
@@ -63,7 +63,7 @@ namespace {
             $selectedYear       = $request->postVar('year');
             $pageType           = $request->postVar('type');
 
-            $placeholderImage = '/_resources/themes/starter/images/PlaceholderImage.png?m=1571187475';
+            $placeholderImage = '_resources/themes/starter/images/PlaceholderImage.png';
 
             if ($pageType == 'project') {
                 $projectPages = ProjectPage::get();
@@ -80,7 +80,7 @@ namespace {
                 $imageAlt = $page->Title . ' - ' . $configTitle;
 
                 foreach ($projectPageCategories as $category) {
-                    $pageCategories [] = $category->Name;
+                    $pageCategories [] = $category->Title;
                 }
 
                 if ($selectedYear !== 'All') {
@@ -137,7 +137,7 @@ namespace {
             $config = SiteConfig::current_site_config();
             $configTitle = $config->Title;
 
-            $placeholderImage = '/_resources/themes/starter/images/PlaceholderImage.png?m=1571187475';
+            $placeholderImage = '_resources/themes/starter/images/PlaceholderImage.png';
 
             foreach ($sessionPages as $page) {
                 $sessionPageCategories = $page->Categories();
