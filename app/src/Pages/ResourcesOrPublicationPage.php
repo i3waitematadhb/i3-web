@@ -47,5 +47,10 @@ namespace {
 
             return $fields;
         }
+
+        public function getVisibleFilters()
+        {
+            return $this->Filters()->filter('Archived', false)->sort('Sort');
+        }
     }
 }
