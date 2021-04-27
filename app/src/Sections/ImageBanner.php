@@ -37,7 +37,7 @@ namespace {
         public function getSectionCMSFields(FieldList $fields)
         {
             $fields->addFieldToTab('Root.Main', UploadField::create('Image', 'Banner image')
-                ->setFolderName('Banner/Images'));
+                ->setFolderName('Sections/Section_Banner/Images'));
             $fields->addFieldToTab('Root.Main', CheckboxField::create('IsParallax', 'Enable image parallax'));
             $fields->addFieldToTab('Root.Main', DropdownField::create('ImageHeight', 'Image height',
                 array(

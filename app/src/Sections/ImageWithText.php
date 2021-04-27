@@ -30,7 +30,8 @@ namespace {
 
         public function getSectionCMSFields(FieldList $fields)
         {
-            $fields->addFieldToTab('Root.Main', UploadField::create('Image')->setFolderName('ImageWithText/Images'));
+            $fields->addFieldToTab('Root.Main', UploadField::create('Image')
+                ->setFolderName('Sections/Section_ImageWithText/Images'));
             $fields->addFieldToTab('Root.Main', HTMLEditorField::create('Content'));
             $fields->addFieldToTab('Root.Main', DropdownField::create('ContentPosition', 'Content position',
                 array(

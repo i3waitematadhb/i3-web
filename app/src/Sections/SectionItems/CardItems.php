@@ -66,7 +66,7 @@ namespace {
                 )
             ));
             $fields->addFieldToTab('Root.Main', UploadField::create('Image')
-                ->setFolderName('Card/Images')
+                ->setFolderName('Sections/Section_Card/Images')
                 ->displayIf('CardType')->isEqualTo('card-image')->end());
             $fields->addFieldToTab('Root.Main', TreeDropdownField::create('PageID', 'Select page to link', SiteTree::class)
                 ->displayIf('CardType')->isEqualTo('card-image')->end());

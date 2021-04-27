@@ -5,6 +5,7 @@ namespace {
     use SilverStripe\AssetAdmin\Forms\UploadField;
     use SilverStripe\Assets\Image;
     use SilverStripe\CMS\Model\SiteTree;
+    use SilverStripe\Control\Controller;
     use SilverStripe\Core\ClassInfo;
     use SilverStripe\Forms\CheckboxField;
     use SilverStripe\Forms\DropdownField;
@@ -144,7 +145,7 @@ namespace {
                 $bgColor->displayIf('SectionBgType')->isEqualTo('background-color');
             $fields->addFieldToTab('Root.Settings', $bgImage = UploadField::create('SectionBgImage', 'Section background image'));
                 $bgImage->displayIf('SectionBgType')->isEqualTo('background-image');
-                $bgImage->setFolderName('Section/Background_Images');
+                $bgImage->setFolderName('Sections/Background/Images');
             $fields->addFieldToTab('Root.Settings', ColorField::create('ColorGradient1', 'Gradient color 1')
                 ->displayIf('SectionBgType')->isEqualTo('background-gradient')->end());
             $fields->addFieldToTab('Root.Settings', ColorField::create('ColorGradient2', 'Gradient color 2')

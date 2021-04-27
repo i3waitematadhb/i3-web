@@ -30,7 +30,7 @@ namespace {
         public function getSectionCMSFields(FieldList $fields)
         {
             $fields->addFieldToTab('Root.Main', UploadField::create('Video', 'Banner video')
-                ->setFolderName('Banner/Videos'));
+                ->setFolderName('Sections/Section_VideoBanner/Videos'));
             $fields->addFieldToTab('Root.Main', HTMLEditorField::create('Content'));
             $fields->addFieldToTab('Root.Main', DropdownField::create('ContentPosition', 'Content position',
                 array(
@@ -40,7 +40,7 @@ namespace {
                 )
             ));
             $fields->addFieldToTab('Root.Main', UploadField::create('ExtraImage')
-                ->setFolderName('Banner/ExtraImages'));
+                ->setFolderName('Sections/Section_VideoBanner/Images'));
         }
     }
 }

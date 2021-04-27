@@ -48,7 +48,7 @@ namespace {
             $fields->addFieldToTab('Root.Main', ReadonlyField::create('ParentRO', 'Parent', $this->Parent()->Title));
             $fields->addFieldToTab('Root.Main', TextField::create('Name'));
             $fields->addFieldToTab('Root.Main', UploadField::create('SliderImage')
-                ->setFolderName('SliderBanner/Images'));
+                ->setFolderName('Sections/Section_SliderBanner/Images'));
             $fields->addFieldToTab('Root.Main', DropdownField::create('ImageOverlay', 'Add image overlay',
                 array(
                     'none' => 'None',

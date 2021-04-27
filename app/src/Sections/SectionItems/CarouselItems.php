@@ -49,7 +49,7 @@ namespace {
             $fields->addFieldToTab('Root.Main', TreeDropdownField::create('PageID', 'Page link', SiteTree::class)
                 ->setDescription('Select a page to populate content (Page should have an image and/or content otherwise use image upload and content field below)'));
             $fields->addFieldToTab('Root.Main', UploadField::create('Image')
-                ->setFolderName('Carousel/Images')
+                ->setFolderName('Sections/Section_Carousel/Images')
                 ->setDescription('Optional: Only upload file when selected page does not have an image'));
             $fields->addFieldToTab('Root.Main', HTMLEditorField::create('Content')
                 ->setDescription('Optional: Only add text when selected page does not have a content'));

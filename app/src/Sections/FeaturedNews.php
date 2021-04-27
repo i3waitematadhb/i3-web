@@ -35,7 +35,7 @@ namespace {
                 )
             ));
             $fields->addFieldToTab('Root.Main', UploadField::create('Image')
-                ->setFolderName('FeaturedNews/Images'));
+                ->setFolderName('Sections/Section_FeaturedNews/Images'));
         }
     }
 }
