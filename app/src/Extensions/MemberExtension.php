@@ -37,7 +37,7 @@ namespace {
         {
             $fields->addFieldToTab('Root.Main', TextField::create('Position'));
             $fields->addFieldToTab('Root.Main', UploadField::create('ProfileImage')
-                ->setFolderName('ProfileImages'),'Locale');
+                ->setFolderName('Member/ProfileImages'),'Locale');
             $fields->addFieldToTab('Root.Main', HTMLEditorField::create('Bio'),'Locale');
 
             $gridConfig = GridFieldConfig_RecordEditor::create(9999);
