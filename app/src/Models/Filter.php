@@ -23,7 +23,7 @@ namespace {
         ];
 
         private static $has_one = [
-            'Parent' => ResourcesOrPublicationPage::class
+            'Parent' => ResourcesHolderPage::class
         ];
 
         private static $has_many = [
