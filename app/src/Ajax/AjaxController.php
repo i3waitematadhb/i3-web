@@ -2,8 +2,10 @@
 
 namespace {
 
+    use SilverStripe\CMS\Model\SiteTree;
     use SilverStripe\Control\HTTPRequest;
     use SilverStripe\SiteConfig\SiteConfig;
+    use SilverStripe\View\Parsers\ShortcodeParser;
 
     class AjaxController extends AbstractApiController
     {
@@ -12,6 +14,7 @@ namespace {
             'getProjectsByFilter',
             'getAllQualityImprovementSessions',
             'getAllQualityImprovementSessionsByFilter',
+            'getFilteredResources'
         ];
 
         public function getAllProjects(HTTPRequest $request)
@@ -171,6 +174,28 @@ namespace {
                 ];
             }
 
+            return $this->jsonOutput($output);
+        }
+
+        public function getFilteredResources(HTTPRequest $request)
+        {
+            $output = [];
+            $selectedFilters = json_decode($request->postVar('filters'));
+            $parentID = $request->postVar('resourcesPageID');
+
+            $resourcesPages = SiteTree::get()->filter('ParentID', $parentID);
+            foreach ($resourcesPages as $page) {
+                $resourcesPage = ResourcesPage::get()->byID($page->ID);
+                $pageFilters = explode(',',$resourcesPage->Filters);
+                if (count(array_diff($selectedFilters, $pageFilters)) < 1) {
+                    $output[] = [
+                        'PageTitle'  => $page->Title,
+                        'PageFilter' => $page->Filters,
+                        'PageContent'=> ShortcodeParser::get_active()->parse($page->Content),
+                        'PageAuthors'=> $page->Authors,
+                    ];
+                }
+            }
             return $this->jsonOutput($output);
         }
     }
