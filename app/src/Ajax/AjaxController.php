@@ -14,6 +14,7 @@ namespace {
             'getProjectsByFilter',
             'getAllQualityImprovementSessions',
             'getAllQualityImprovementSessionsByFilter',
+            'getAllResources',
             'getFilteredResources'
         ];
 
@@ -177,6 +178,26 @@ namespace {
             return $this->jsonOutput($output);
         }
 
+        public function getAllResources(HTTPRequest $request)
+        {
+            $output = [];
+            $parentID = $request->postVar('resourcesPageID');
+            $resourcesPages = SiteTree::get()->filter('ParentID', $parentID);
+            foreach ($resourcesPages as $page) {
+                $resourcesPage = ResourcesPage::get()->byID($page->ID);
+                $pageFilters = explode(',',$resourcesPage->Filters);
+                $output[] = [
+                    'title'   => $page->Title,
+                    'categories' => $pageFilters,
+                    'content' => ShortcodeParser::get_active()->parse($page->Content),
+                    'authors' => $page->Authors,
+                    'abstract'=> ShortcodeParser::get_active()->parse($page->Abstract),
+                    'image'   => $page->Image->URL
+                ];
+            }
+            return $this->jsonOutput($output);
+        }
+
         public function getFilteredResources(HTTPRequest $request)
         {
             $output = [];
@@ -189,12 +210,12 @@ namespace {
                 $pageFilters = explode(',',$resourcesPage->Filters);
                 if (count(array_diff($selectedFilters, $pageFilters)) < 1) {
                     $output[] = [
-                        'PageTitle'  => $page->Title,
-                        'PageFilter' => $page->Filters,
-                        'PageContent'=> ShortcodeParser::get_active()->parse($page->Content),
-                        'PageAuthors'=> $page->Authors,
-                        'PageAbstract'=> ShortcodeParser::get_active()->parse($page->Abstract),
-                        'PageImage'   => $page->Image->URL
+                        'title'   => $page->Title,
+                        'categories' => $pageFilters,
+                        'content' => ShortcodeParser::get_active()->parse($page->Content),
+                        'authors' => $page->Authors,
+                        'abstract'=> ShortcodeParser::get_active()->parse($page->Abstract),
+                        'image'   => $page->Image->URL
                     ];
                 }
             }
