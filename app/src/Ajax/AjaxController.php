@@ -186,11 +186,12 @@ namespace {
             foreach ($resourcesPages as $page) {
                 $resourcesPage = ResourcesPage::get()->byID($page->ID);
                 $pageFilters = explode(',',$resourcesPage->Filters);
+                $pageAuthors = explode(',',$page->Authors);
                 $output[] = [
                     'title'   => $page->Title,
                     'categories' => $pageFilters,
                     'content' => ShortcodeParser::get_active()->parse($page->Content),
-                    'authors' => $page->Authors,
+                    'authors' => $pageAuthors,
                     'abstract'=> ShortcodeParser::get_active()->parse($page->Abstract),
                     'image'   => $page->Image->URL
                 ];
@@ -208,12 +209,13 @@ namespace {
             foreach ($resourcesPages as $page) {
                 $resourcesPage = ResourcesPage::get()->byID($page->ID);
                 $pageFilters = explode(',',$resourcesPage->Filters);
+                $pageAuthors = explode(',',$page->Authors);
                 if (count(array_diff($selectedFilters, $pageFilters)) < 1) {
                     $output[] = [
                         'title'   => $page->Title,
                         'categories' => $pageFilters,
                         'content' => ShortcodeParser::get_active()->parse($page->Content),
-                        'authors' => $page->Authors,
+                        'authors' => $pageAuthors,
                         'abstract'=> ShortcodeParser::get_active()->parse($page->Abstract),
                         'image'   => $page->Image->URL
                     ];
