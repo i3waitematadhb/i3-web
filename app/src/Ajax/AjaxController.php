@@ -193,6 +193,8 @@ namespace {
                         'PageFilter' => $page->Filters,
                         'PageContent'=> ShortcodeParser::get_active()->parse($page->Content),
                         'PageAuthors'=> $page->Authors,
+                        'PageAbstract'=> ShortcodeParser::get_active()->parse($page->Abstract),
+                        'PageImage'   => $page->Image->URL
                     ];
                 }
             }
