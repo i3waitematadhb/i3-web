@@ -15,7 +15,8 @@ namespace {
             'getAllQualityImprovementSessions',
             'getAllQualityImprovementSessionsByFilter',
             'getAllResources',
-            'getFilteredResources'
+            'getFilteredResources',
+            'findTagsParent'
         ];
 
         public function getAllProjects(HTTPRequest $request)
@@ -218,6 +219,24 @@ namespace {
                         'authors' => $pageAuthors,
                         'abstract'=> ShortcodeParser::get_active()->parse($page->Abstract),
                         'image'   => $page->Image->URL
+                    ];
+                }
+            }
+            return $this->jsonOutput($output);
+        }
+
+        public function findTagsParent(HTTPRequest $request)
+        {
+            $output = '';
+            $tag = $request->postVar('tag');
+            $resourcesPageID = $request->postVar('resourcesPageID');
+            $filterItems = FilterItem::get()->filter('Name', $tag);
+            foreach ($filterItems as $item) {
+                $filter = Filter::get()->byID($item->ParentID);
+                if ($filter->ParentID == $resourcesPageID) {
+                    $output = [
+                        'parentID' => $filter->ID,
+                        'tagName'  => $tag
                     ];
                 }
             }
