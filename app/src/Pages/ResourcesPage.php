@@ -36,7 +36,7 @@ namespace {
                 ->setFolderName('ResourcesPage/FeaturedImages'), 'Content');
             $fields->addFieldToTab('Root.Main', StringTagField::create('Authors', 'Author/s',
                 StaffPage::get(), explode(',', $this->Authors))->setCanCreate(true),'Content');
-            $fields->addFieldToTab('Root.Main', StringTagField::create('Filters', 'Categories',
+            $fields->addFieldToTab('Root.Main', StringTagField::create('Filters', 'Tags',
                 $this->getVisibleFilterItems()->map('Title', 'Title'), explode(',', $this->Filters))->setCanCreate(true),'Content');
 
             return $fields;
