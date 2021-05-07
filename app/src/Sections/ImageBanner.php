@@ -20,6 +20,7 @@ namespace {
             'ImageOverlay'    => 'Varchar',
             'ImageHeight'     => 'Varchar',
             'IsParallax'      => 'Boolean',
+            'ScrollIcon'      => 'Boolean',
         ];
 
         private static $has_one = [
@@ -63,6 +64,7 @@ namespace {
             ));
             $fields->addFieldToTab('Root.Main', DropdownField::create('ImageAnimation', 'Animation',
                 Animation::get()->filter('Archived', false)->map('Name', 'Name')));
+            $fields->addFieldToTab('Root.Main', CheckboxField::create('ScrollIcon', 'Show scroll icon'));
         }
     }
 }
