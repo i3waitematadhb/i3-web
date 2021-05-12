@@ -184,7 +184,7 @@ namespace {
             $instance->ID = $this->ID;
             $instance->getSectionCMSFields($fields);
 
-            $fields->addFieldToTab('Root.Settings', CodeEditorField::create('CodeEditor'));
+            $fields->addFieldToTab('Root.CodeEditor', CodeEditorField::create('CodeEditor'));
             $fields->addFieldToTab('Root.Main', CheckboxField::create('Archived'));
             $fields->addFieldToTab('Root.Main', HiddenField::create('Sort'));
 
