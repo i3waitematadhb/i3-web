@@ -49,6 +49,20 @@ namespace {
             $fields->addFieldToTab('Root.Animation', $editorAnimation);
 
             /*
+             *  Section Width
+             */
+            $configWidth = GridFieldConfig_RecordEditor::create('999');
+            $editorWidth = GridField::create('SectionWidth', 'Width', SectionWidth::get(), $configWidth);
+            $fields->addFieldToTab('Root.Sections', $editorWidth);
+
+            /*
+             *  Padding
+             */
+            $configPadding = GridFieldConfig_RecordEditor::create('999');
+            $editorPadding = GridField::create('Padding', 'Padding', Padding::get(), $configPadding);
+            $fields->addFieldToTab('Root.Sections', $editorPadding);
+
+            /*
              * Footer Items
              */
             $configFooter = GridFieldConfig_RecordEditor::create('999');
