@@ -19,7 +19,6 @@ namespace {
             'ImageAnimation'  => 'Varchar',
             'ImageOverlay'    => 'Varchar',
             'ImageHeight'     => 'Varchar',
-            'IsParallax'      => 'Boolean',
             'ScrollIcon'      => 'Boolean',
         ];
 
@@ -39,7 +38,6 @@ namespace {
         {
             $fields->addFieldToTab('Root.Main', UploadField::create('Image', 'Banner image')
                 ->setFolderName('Sections/Section_Banner/Images'));
-            $fields->addFieldToTab('Root.Main', CheckboxField::create('IsParallax', 'Enable image parallax'));
             $fields->addFieldToTab('Root.Main', DropdownField::create('ImageHeight', 'Image height',
                 array(
                     'small' => 'Small',
