@@ -31,7 +31,7 @@ namespace {
         ];
 
         private static $defaults = [
-            'ImageHeight' => 'large'
+            'ImageHeight' => 'bh-large'
         ];
 
         public function getSectionCMSFields(FieldList $fields)
@@ -40,24 +40,24 @@ namespace {
                 ->setFolderName('Sections/Section_Banner/Images'));
             $fields->addFieldToTab('Root.Main', DropdownField::create('ImageHeight', 'Image height',
                 array(
-                    'small' => 'Small',
-                    'medium'=> 'Medium',
-                    'large' => 'Large'
+                    'bh-small' => 'Small',
+                    'bh-medium'=> 'Medium',
+                    'bh-large' => 'Large'
                 )
             ));
             $fields->addFieldToTab('Root.Main', HTMLEditorField::create('Content'));
             $fields->addFieldToTab('Root.Main', DropdownField::create('ContentPosition', 'Content position',
                 array(
-                    'left-content'   => 'Left',
-                    'center-content' => 'Center',
-                    'right-content'  => 'Right'
+                    'cp-left'   => 'Left',
+                    'cp-center' => 'Center',
+                    'cp-right'  => 'Right'
                 )
             ));
             $fields->addFieldToTab('Root.Main', DropdownField::create('ImageOverlay', 'Add image overlay',
                 array(
                     'none' => 'None',
-                    'dark' => 'Dark',
-                    'light'=> 'Light'
+                    'overlay-dark' => 'Dark',
+                    'overlay-light'=> 'Light'
                 )
             ));
             $fields->addFieldToTab('Root.Main', DropdownField::create('ImageAnimation', 'Animation',
