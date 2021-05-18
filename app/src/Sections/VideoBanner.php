@@ -4,6 +4,7 @@ namespace {
 
     use SilverStripe\AssetAdmin\Forms\UploadField;
     use SilverStripe\Assets\File;
+    use SilverStripe\Forms\CheckboxField;
     use SilverStripe\Forms\DropdownField;
     use SilverStripe\Forms\FieldList;
     use SilverStripe\Forms\HTMLEditor\HTMLEditorField;
@@ -13,8 +14,11 @@ namespace {
         private static $singular_name = 'Video Banner';
 
         private static $db = [
-            'Content'         => 'HTMLText',
-            'ContentPosition' => 'Varchar'
+            'Content'          => 'HTMLText',
+            'ContentPosition'  => 'Varchar',
+            'ContentAnimation' => 'Varchar',
+            'VideoHeight'      => 'Text',
+            'ScrollIcon'       => 'Boolean'
         ];
 
         private static $has_one = [
@@ -37,6 +41,16 @@ namespace {
                     'right-content'  => 'Right'
                 )
             ));
+            $fields->addFieldToTab('Root.Main', DropdownField::create('ContentAnimation', 'Content animation',
+                Animation::get()->filter('Archived', false)->map('Name','Name')));
+            $fields->addFieldToTab('Root.Main', DropdownField::create('VideoHeight', 'Video height',
+                array(
+                    'bh-small' => 'Small',
+                    'bh-medium'=> 'Medium',
+                    'bh-large' => 'Large'
+                )
+            ));
+            $fields->addFieldToTab('Root.Main', CheckboxField::create('ScrollIcon', 'Show scroll icon'));
         }
     }
 }
