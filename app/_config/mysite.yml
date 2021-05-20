@@ -18,6 +18,9 @@ Silverstripe\Security\Member:
 CWP\CWP\PageTypes\NewsPage:
   extensions:
     - NewsPageExtension
+CWP\CWP\PageTypes\NewsHolder:
+  extensions:
+    - NewsHolderExtension
 # UTF8MB4 has limited support in older MySQL versions.
 # Remove this configuration if you experience issues.
 ---
