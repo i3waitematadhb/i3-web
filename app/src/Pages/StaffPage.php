@@ -19,7 +19,7 @@ namespace {
         ];
 
         private static $has_many = [
-            'Socials' => StaffSocials::class
+            'Socials' => Socials::class
         ];
 
         private static $many_many = [
