@@ -44,9 +44,11 @@ namespace {
             'SectionBgType' => 'Varchar',
             'SectionBgColor'=> Color::class,
             'SectionPadding'=> 'Varchar',
+            'SectionPaddingMobile' => 'Varchar',
             'SectionWidth'  => 'Varchar',
             'ColorGradient1'=> Color::class,
             'ColorGradient2'=> Color::class,
+            'ScrollIcon'    => 'Boolean',
             'CodeEditor'    => 'HTMLText',
             'Archived'      => 'Boolean',
             'Sort'          => 'Int'
@@ -60,6 +62,10 @@ namespace {
 
         private static $owns = [
             'SectionBgImage'
+        ];
+
+        private static $defaults = [
+            'SectionContainer' => 'container-fluid p-0'
         ];
 
         private static $summary_fields = [
@@ -102,6 +108,7 @@ namespace {
                 $fields->addFieldToTab('Root.Main', HTMLEditorField::create('Content'));
                 $fields->addFieldToTab('Root.Main', DropdownField::create('ContentAnimation', 'Select content animation',
                     Animation::get()->filter('Archived', false)->map('Name', 'Name')));
+                $fields->addFieldToTab('Root.Main', CheckboxField::create('ScrollIcon', 'Show scroll icon'));
             }
 
             /**
@@ -118,6 +125,8 @@ namespace {
             )->setDescription('<b>Fix-width</b> container (its max-width changes at each breakpoint)</br><b>Container fluid</b> for a full width container, spanning the entire width of the viewport.</br><b>Container small</b> (max-width fixed at 575px)'));
             $fields->addFieldToTab('Root.Settings', ListboxField::create('SectionPadding', 'Section Paddings',
                 Padding::get()->map('Class', 'Name')));
+            $fields->addFieldToTab('Root.Settings', ListboxField::create('SectionPaddingMobile', 'Section Paddings for mobile',
+                MobilePadding::get()->map('Class', 'Name')));
             $fields->addFieldToTab('Root.Settings', DropdownField::create('SectionBgType', 'Section background type',
                 array(
                     'none'             => 'None',
@@ -210,6 +219,20 @@ namespace {
         {
             $output = new ArrayList();
             $paddings = json_decode($this->SectionPadding);
+            if ($paddings) {
+                foreach ($paddings as $padding) {
+                    $output->push(
+                        new ArrayData(array('Name' => $padding))
+                    );
+                }
+            }
+            return $output;
+        }
+
+        public function getReadableMobilePaddings()
+        {
+            $output = new ArrayList();
+            $paddings = json_decode($this->SectionPaddingMobile);
             if ($paddings) {
                 foreach ($paddings as $padding) {
                     $output->push(
