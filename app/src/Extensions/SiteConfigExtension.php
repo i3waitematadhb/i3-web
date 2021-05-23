@@ -63,6 +63,13 @@ namespace {
             $fields->addFieldToTab('Root.Sections', $editorPadding);
 
             /*
+             *  Mobile Padding
+             */
+            $configMobilePadding = GridFieldConfig_RecordEditor::create('999');
+            $editorMobilePadding = GridField::create('MobilePadding', 'Mobile padding', MobilePadding::get(), $configMobilePadding);
+            $fields->addFieldToTab('Root.Sections', $editorMobilePadding);
+
+            /*
              * Footer Items
              */
             $configFooter = GridFieldConfig_RecordEditor::create('999');
