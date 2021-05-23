@@ -13,7 +13,9 @@ namespace {
 
     class Page extends SiteTree
     {
-        private static $db = [];
+        private static $db = [
+            'FullPage' => 'Boolean'
+        ];
 
         private static $has_one = [];
 
@@ -66,6 +68,9 @@ namespace {
                 $this->Sections(),
                 $gridConfig
             );
+
+            $fields->addFieldToTab('Root.Main', CheckboxField::create('FullPage', 'Enable fullscreen scrolling layout')
+                ->setDescription('See<a href="https://alvarotrigo.com/fullPage/" target="_blank" rel="noreferrer nofollow">&nbsp;fullPage.js&nbsp;page&nbsp;</a>for reference.'),'Metadata');
 
             $fields->addFieldToTab('Root.Main', $gridField, 'Metadata');
 
