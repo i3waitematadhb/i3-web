@@ -37,9 +37,11 @@ namespace {
             'SectionContainer' => 'Text',
             'SectionHeaderSize'=> 'Varchar',
             'SectionHeaderPosition' => 'Varchar',
+            'SectionHeaderMobilePadding' => 'Varchar',
             'ShowSectionHeader'     => 'Boolean',
             'SectionFooter'     => 'HTMLText',
             'SectionFooterSize' => 'Varchar',
+            'SectionFooterMobilePadding' => 'Varchar',
             'ShowSectionFooter' => 'Boolean',
             'SectionBgType' => 'Varchar',
             'SectionBgColor'=> Color::class,
@@ -163,6 +165,9 @@ namespace {
                 )
             ));
                 $sectionHeaderPos->displayIf('ShowSectionHeader')->isChecked();
+            $fields->addFieldToTab('Root.Header', $headerPadding = ListboxField::create('SectionHeaderMobilePadding', 'Section Paddings for mobile',
+                MobilePadding::get()->map('Class', 'Name')));
+                $headerPadding->displayIf('ShowSectionHeader')->isChecked();
 
             /**
              *  Section Footer
@@ -173,6 +178,10 @@ namespace {
             $fields->addFieldToTab('Root.Footer', $sectionFooterSize = GroupedDropdownField::create('SectionFooterSize', 'Section footer padding size',
                 Padding::get()->map('Class', 'Name')));
                 $sectionFooterSize->displayIf('ShowSectionFooter')->isChecked();
+
+            $fields->addFieldToTab('Root.Footer', $footerMobilePadding = ListboxField::create('SectionFooterMobilePadding', 'Section Paddings for mobile',
+                MobilePadding::get()->map('Class', 'Name')));
+            $footerMobilePadding->displayIf('ShowSectionHeader')->isChecked();
 
             $instance = self::singleton($this->SectionType);
             $instance->ID = $this->ID;
