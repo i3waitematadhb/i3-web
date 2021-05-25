@@ -55,11 +55,12 @@ namespace {
                 ->setFolderName('Sections/MasonryContent'));
             $fields->addFieldToTab('Root.Main', DropdownField::create('ImageSize', 'Image size',
                 array(
+                    'none'    => 'Default',
                     'i-small' => 'Small',
                     'i-medium' => 'Medium',
                     'i-large' => 'Large'
                 )
-            )->setDescription('<strong>Small</strong> = 40% of your viewport(browser) height<br><strong>Medium</strong> = 70% of your viewport(browser) height<br><strong>large</strong> = 100% of your viewport(browser) height' ));
+            )->setDescription('<strong>Small</strong> = 55% of your viewport(browser) height<br><strong>Medium</strong> = 70% of your viewport(browser) height<br><strong>large</strong> = 100% of your viewport(browser) height' ));
             $fields->addFieldToTab('Root.Main', ListboxField::create('ImagePaddings', 'Image Paddings',
                 Padding::get()->map('Class', 'Name')));
             $fields->addFieldToTab('Root.Main', HTMLEditorField::create('Content'));
