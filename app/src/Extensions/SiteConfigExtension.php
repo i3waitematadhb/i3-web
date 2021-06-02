@@ -19,11 +19,13 @@ namespace {
         ];
 
         private static $has_one = [
-            'SiteLogo' => File::class
+            'SiteLogo'    => File::class,
+            'AltSiteLogo' => File::class
         ];
 
         private static $owns = [
-            'SiteLogo'
+            'SiteLogo',
+            'AltSiteLogo'
         ];
 
         public function updateCMSFields(FieldList $fields)
@@ -32,6 +34,7 @@ namespace {
              *  Header
              */
             $fields->addFieldToTab("Root.Header", UploadField::create("SiteLogo")->setFolderName('SiteLogo'));
+            $fields->addFieldToTab("Root.Header", UploadField::create("AltSiteLogo", 'Site logo alt')->setFolderName('SiteLogo'));
             $fields->addFieldToTab('Root.Header', SliderField::create('SiteLogoWidth', 'Site logo width', '50', '350'));
             $fields->addFieldToTab('Root.Header', DropdownField::create('SiteLogoPosition', 'Site logo position',
                 array(
