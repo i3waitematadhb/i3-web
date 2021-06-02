@@ -15,7 +15,6 @@ namespace {
 
         private static $db = [
             'Content'          => 'HTMLText',
-            'ContentPosition'  => 'Varchar',
             'ContentAnimation' => 'Varchar',
             'VideoHeight'      => 'Text',
             'ScrollIcon'       => 'Boolean'
@@ -34,13 +33,13 @@ namespace {
             $fields->addFieldToTab('Root.Main', UploadField::create('Video', 'Banner video')
                 ->setFolderName('Sections/Section_VideoBanner/Videos'));
             $fields->addFieldToTab('Root.Main', HTMLEditorField::create('Content'));
-            $fields->addFieldToTab('Root.Main', DropdownField::create('ContentPosition', 'Content position',
-                array(
-                    'left-content'   => 'Left',
-                    'center-content' => 'Center',
-                    'right-content'  => 'Right'
-                )
-            ));
+//            $fields->addFieldToTab('Root.Main', DropdownField::create('ContentPosition', 'Content position',
+//                array(
+//                    'left-content'   => 'Left',
+//                    'center-content' => 'Center',
+//                    'right-content'  => 'Right'
+//                )
+//            ));
             $fields->addFieldToTab('Root.Main', DropdownField::create('ContentAnimation', 'Content animation',
                 Animation::get()->filter('Archived', false)->map('Name','Name')));
             $fields->addFieldToTab('Root.Main', DropdownField::create('VideoHeight', 'Video height',
