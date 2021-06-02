@@ -8,3 +8,4 @@ $validator = PasswordValidator::create();
 // Settings are registered via Injector configuration - see passwords.yml in framework
 Member::set_password_validator($validator);
 date_default_timezone_set('Pacific/Auckland');
+\SilverStripe\ORM\Search\FulltextSearchable::enable();
