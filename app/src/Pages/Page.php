@@ -14,7 +14,8 @@ namespace {
     class Page extends SiteTree
     {
         private static $db = [
-            'FullPage' => 'Boolean'
+//            'FullPage'    => 'Boolean',
+            'HeaderTheme' => 'Varchar'
         ];
 
         private static $has_one = [];
@@ -69,8 +70,13 @@ namespace {
                 $gridConfig
             );
 
-            $fields->addFieldToTab('Root.Main', CheckboxField::create('FullPage', 'Enable fullscreen scrolling layout')
-                ->setDescription('See<a href="https://alvarotrigo.com/fullPage/" target="_blank" rel="noreferrer nofollow">&nbsp;fullPage.js&nbsp;page&nbsp;</a>for reference.'),'Metadata');
+//            $fields->addFieldToTab('Root.Main', CheckboxField::create('FullPage', 'Enable fullscreen scrolling layout')
+//                ->setDescription('See<a href="https://alvarotrigo.com/fullPage/" target="_blank" rel="noreferrer nofollow">&nbsp;fullPage.js&nbsp;page&nbsp;</a>for reference.'),'Metadata');
+
+            $fields->addFieldToTab('Root.Settings', DropdownField::create('HeaderTheme', 'Header theme', array(
+                'header-light' => 'Header light',
+                'header-dark'  => 'Header dark'
+            )));
 
             $fields->addFieldToTab('Root.Main', $gridField, 'Metadata');
 
