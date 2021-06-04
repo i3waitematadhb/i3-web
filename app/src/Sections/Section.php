@@ -154,7 +154,7 @@ namespace {
             $fields->addFieldToTab('Root.Header', CheckboxField::create('ShowSectionHeader'));
             $fields->addFieldToTab('Root.Header', $sectionHeader = HTMLEditorField::create('SectionHeader', 'Section header content'));
                 $sectionHeader->displayIf('ShowSectionHeader')->isChecked();
-            $fields->addFieldToTab('Root.Header', $sectionHeaderSize = GroupedDropdownField::create('SectionHeaderSize', 'Section header padding size',
+            $fields->addFieldToTab('Root.Header', $sectionHeaderSize = ListboxField::create('SectionHeaderSize', 'Section header padding size',
                 Padding::get()->map('Class', 'Name')));
                 $sectionHeaderSize->displayIf('ShowSectionHeader')->isChecked();
             $fields->addFieldToTab('Root.Header', $sectionHeaderPos = DropdownField::create('SectionHeaderPosition', 'Section header position',
@@ -165,7 +165,7 @@ namespace {
                 )
             ));
                 $sectionHeaderPos->displayIf('ShowSectionHeader')->isChecked();
-            $fields->addFieldToTab('Root.Header', $headerPadding = ListboxField::create('SectionHeaderMobilePadding', 'Section Paddings for mobile',
+            $fields->addFieldToTab('Root.Header', $headerPadding = ListboxField::create('SectionHeaderMobilePadding', 'Header Paddings for mobile',
                 MobilePadding::get()->map('Class', 'Name')));
                 $headerPadding->displayIf('ShowSectionHeader')->isChecked();
 
@@ -175,11 +175,11 @@ namespace {
             $fields->addFieldToTab('Root.Footer', CheckboxField::create('ShowSectionFooter'));
             $fields->addFieldToTab('Root.Footer', HTMLEditorField::create('SectionFooter', 'Section footer content')
                 ->displayIf('ShowSectionFooter')->isChecked()->end());
-            $fields->addFieldToTab('Root.Footer', $sectionFooterSize = GroupedDropdownField::create('SectionFooterSize', 'Section footer padding size',
+            $fields->addFieldToTab('Root.Footer', $sectionFooterSize = ListboxField::create('SectionFooterSize', 'Section footer padding size',
                 Padding::get()->map('Class', 'Name')));
-                $sectionFooterSize->displayIf('ShowSectionFooter')->isChecked();
+            $sectionFooterSize->displayIf('ShowSectionFooter')->isChecked();
 
-            $fields->addFieldToTab('Root.Footer', $footerMobilePadding = ListboxField::create('SectionFooterMobilePadding', 'Section Paddings for mobile',
+            $fields->addFieldToTab('Root.Footer', $footerMobilePadding = ListboxField::create('SectionFooterMobilePadding', 'Footer Paddings for mobile',
                 MobilePadding::get()->map('Class', 'Name')));
             $footerMobilePadding->displayIf('ShowSectionHeader')->isChecked();
 
@@ -206,7 +206,6 @@ namespace {
             if($this->Name == ''){
                 $this->Name = $this->SectionType;
             }
-            //$generatedID = substr(str_shuffle(str_repeat($chars='0123456789', ceil(5/strlen($chars)) )),1, 15);
         }
 
         public function getDisplaySectionType()
@@ -242,6 +241,33 @@ namespace {
         {
             $output = new ArrayList();
             $paddings = json_decode($this->SectionPaddingMobile);
+            if ($paddings) {
+                foreach ($paddings as $padding) {
+                    $output->push(
+                        new ArrayData(array('Name' => $padding))
+                    );
+                }
+            }
+            return $output;
+        }
+
+        public function getReadableHeaderPaddings()
+        {
+            $output = new ArrayList();
+            $paddings = json_decode($this->SectionHeaderSize);
+            if ($paddings) {
+                foreach ($paddings as $padding) {
+                    $output->push(
+                        new ArrayData(array('Name' => $padding))
+                    );
+                }
+            }
+            return $output;
+        }
+        public function getReadableFooterPaddings()
+        {
+            $output = new ArrayList();
+            $paddings = json_decode($this->SectionFooterSize);
             if ($paddings) {
                 foreach ($paddings as $padding) {
                     $output->push(
