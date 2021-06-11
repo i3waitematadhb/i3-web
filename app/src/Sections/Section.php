@@ -181,7 +181,7 @@ namespace {
 
             $fields->addFieldToTab('Root.Footer', $footerMobilePadding = ListboxField::create('SectionFooterMobilePadding', 'Footer Paddings for mobile',
                 MobilePadding::get()->map('Class', 'Name')));
-            $footerMobilePadding->displayIf('ShowSectionHeader')->isChecked();
+            $footerMobilePadding->displayIf('ShowSectionFooter')->isChecked();
 
             $instance = self::singleton($this->SectionType);
             $instance->ID = $this->ID;
