@@ -80,20 +80,7 @@ namespace {
             $icon->setDescription('e.g. far fa-capsules (<a href="https://fontawesome.com/icons?d=gallery" target="_blank">click here for more icons</a>)');
 
             $fields->addFieldToTab('Root.Main', HTMLEditorField::create('Content'));
-            $fields->addFieldToTab('Root.Main', DropdownField::create('CardWidth', 'Card width',
-                array(
-                    'col-md-2' => '16%',
-                    'col-md-3' => '25%',
-                    'col-md-4' => '33%',
-                    'col-md-5' => '41%',
-                    'col-md-6' => '50%',
-                    'col-md-7' => '58%',
-                    'col-md-8' => '66%',
-                    'col-md-9' => '75%',
-                    'col-md-10' => '83%',
-                    'col-md-11' => '91%',
-                    'col-md-12' => '100%',
-                )
+            $fields->addFieldToTab('Root.Main', DropdownField::create('CardWidth', 'Card width', SectionWidth::get()->filter('Archived', false)->map('Class', 'Name')
             ));
             $fields->addFieldToTab('Root.Main', DropdownField::create('Animation', 'Select card animation',
                 Animation::get()->filter('Archived', false)->map('Name', 'Name')));
