@@ -4,6 +4,7 @@ namespace {
 
     use SilverStripe\AssetAdmin\Forms\UploadField;
     use SilverStripe\Assets\File;
+    use SilverStripe\Assets\Image;
     use SilverStripe\CMS\Model\SiteTree;
     use SilverStripe\Forms\CheckboxField;
     use SilverStripe\Forms\DropdownField;
@@ -22,12 +23,14 @@ namespace {
 
         private static $has_one = [
             'PageIcon' => File::class,
-            'PageIconActive' => File::class
+            'PageIconActive' => File::class,
+            'MenuBackground' => Image::class
         ];
 
         private static $owns = [
             'PageIcon',
-            'PageIconActive'
+            'PageIconActive',
+            'MenuBackground'
         ];
 
         private static $has_many = [
@@ -40,9 +43,11 @@ namespace {
             $fields->removeByName(['Content']);
 
             $fields->addFieldToTab('Root.MenuIcon', UploadField::create('PageIcon', 'Menu icon')
-                ->setFolderName('PageIcons'));
+                ->setFolderName('PageMenu/Icons'));
             $fields->addFieldToTab('Root.MenuIcon', UploadField::create('PageIconActive', 'Menu icon active')
-                ->setFolderName('PageIcons'));
+                ->setFolderName('PageMenu/Icons'));
+            $fields->addFieldToTab('Root.MenuIcon', UploadField::create('MenuBackground', 'Menu background')
+                ->setFolderName('PageMenu/Background'));
 
             $gridConfig = GridFieldConfig_RecordEditor::create(9999);
             if ($this->Sections()->Count()) {
