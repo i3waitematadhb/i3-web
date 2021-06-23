@@ -59,19 +59,7 @@ namespace {
                 'SectionWidth' => [
                     'title' => 'Section Width',
                     'callback' => function($record, $column, $grid) {
-                        $fields = DropdownField::create($column, $column, array(
-                            'col-lg-2' => '16%',
-                            'col-lg-3' => '25%',
-                            'col-lg-4' => '33%',
-                            'col-lg-5' => '41%',
-                            'col-lg-6' => '50%',
-                            'col-lg-7' => '58%',
-                            'col-lg-8' => '66%',
-                            'col-lg-9' => '75%',
-                            'col-lg-10' => '83%',
-                            'col-lg-11' => '91%',
-                            'col-lg-12' => '100%',
-                        ));
+                        $fields = DropdownField::create($column, $column, SectionWidth::get()->filter('Archived', false)->map('Class','Name'));
                         return $fields;
                     }
                 ],
