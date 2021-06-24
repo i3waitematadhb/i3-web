@@ -24,13 +24,15 @@ namespace {
         private static $has_one = [
             'PageIcon' => File::class,
             'PageIconActive' => File::class,
-            'MenuBackground' => Image::class
+            'MenuBackground' => Image::class,
+            'PageBackground' => Image::class
         ];
 
         private static $owns = [
             'PageIcon',
             'PageIconActive',
-            'MenuBackground'
+            'MenuBackground',
+            'PageBackground'
         ];
 
         private static $has_many = [
@@ -85,6 +87,8 @@ namespace {
                 'header-light' => 'Header light',
                 'header-dark'  => 'Header dark'
             )));
+            $fields->addFieldToTab('Root.Settings', UploadField::create('PageBackground', 'Page background')
+                ->setFolderName('Page/Background'));
 
             $fields->addFieldToTab('Root.Main', $gridField, 'Metadata');
 
