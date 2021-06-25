@@ -235,8 +235,8 @@ namespace {
                 $filter = Filter::get()->byID($item->ParentID);
                 if ($filter->ParentID == $resourcesPageID) {
                     $output = [
-                        'parentID' => $filter->ID,
-                        'tagName'  => $tag
+                        'tagID'   => $filter->ID,
+                        'tagName' => $tag
                     ];
                 }
             }
