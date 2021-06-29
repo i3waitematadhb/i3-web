@@ -3,6 +3,7 @@
 namespace {
 
     use SilverStripe\Forms\CheckboxField;
+    use SilverStripe\Forms\DropdownField;
     use SilverStripe\Forms\FieldList;
     use SilverStripe\Forms\GridField\GridField;
     use SilverStripe\Forms\GridField\GridFieldConfig_RecordEditor;
@@ -27,6 +28,13 @@ namespace {
             $gridConfig->addComponent(new GridFieldEditableColumns());
             $gridColumns = $gridConfig->getComponentByType(GridFieldEditableColumns::class);
             $gridColumns->setDisplayFields([
+                'CardWidth' => [
+                    'title' => 'Card Width',
+                    'callback' => function($record, $column, $grid) {
+                        $fields = DropdownField::create($column, $column, SectionWidth::get()->filter('Archived', false)->map('Class','Name'));
+                        return $fields;
+                    }
+                ],
                 'Archived' => [
                     'title' => 'Archive',
                     'callback' => function($record, $column, $grid) {
