@@ -25,6 +25,7 @@ namespace {
             'Name'       => 'Varchar',
             'Content'    => 'HTMLText',
             'ContentOverlay' => 'Boolean',
+            'CardLine'   => 'Boolean',
             'CardWidth'  => 'Varchar',
             'CardBgColor'=> Color::class,
             'Animation'  => 'Varchar',
@@ -35,6 +36,10 @@ namespace {
         private static $has_one = [
             'Parent'=> Card::class,
             'Image' => Image::class
+        ];
+
+        private static $defaults = [
+            'CardLine' => 1
         ];
 
         private static $owns = [
@@ -59,8 +64,10 @@ namespace {
                 ->setFolderName('Sections/Section_Card/Images'));
             $fields->addFieldToTab('Root.Main', ColorField::create('CardBgColor', 'Card background color'));
             $fields->addFieldToTab('Root.Main', HTMLEditorField::create('Content'));
+            $fields->addFieldToTab('Root.Main', CheckboxField::create('CardLine', 'Show content line'));
             $fields->addFieldToTab('Root.Main', CheckboxField::create('ContentOverlay', 'Enable content overlay'));
-            $fields->addFieldToTab('Root.Main', DropdownField::create('CardWidth', 'Card width', SectionWidth::get()->filter('Archived', false)->map('Class', 'Name')
+            $fields->addFieldToTab('Root.Main', DropdownField::create('CardWidth', 'Card width',
+                SectionWidth::get()->filter('Archived', false)->map('Class', 'Name')
             ));
             $fields->addFieldToTab('Root.Main', DropdownField::create('Animation', 'Select card animation',
                 Animation::get()->filter('Archived', false)->map('Name', 'Name')));
