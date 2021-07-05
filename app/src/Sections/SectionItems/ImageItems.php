@@ -6,6 +6,8 @@ namespace {
 
     class ImageItems extends DataObject
     {
-
+        private static $db = [
+            'Content' => 'HTMLText'
+        ];
     }
 }
