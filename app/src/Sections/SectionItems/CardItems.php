@@ -38,12 +38,12 @@ namespace {
             'Image' => Image::class
         ];
 
-        private static $defaults = [
-            'CardLine' => 1
-        ];
-
         private static $owns = [
             'Image'
+        ];
+
+        private static $defaults = [
+            'CardLine' => true
         ];
 
         private static $summary_fields = [
@@ -67,8 +67,7 @@ namespace {
             $fields->addFieldToTab('Root.Main', CheckboxField::create('CardLine', 'Show content line'));
             $fields->addFieldToTab('Root.Main', CheckboxField::create('ContentOverlay', 'Enable content overlay'));
             $fields->addFieldToTab('Root.Main', DropdownField::create('CardWidth', 'Card width',
-                SectionWidth::get()->filter('Archived', false)->map('Class', 'Name')
-            ));
+                SectionWidth::get()->filter('Archived', false)->map('Class', 'Name')));
             $fields->addFieldToTab('Root.Main', DropdownField::create('Animation', 'Select card animation',
                 Animation::get()->filter('Archived', false)->map('Name', 'Name')));
             $fields->addFieldToTab('Root.Main', CheckboxField::create('Archived'));
