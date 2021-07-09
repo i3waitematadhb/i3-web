@@ -36,8 +36,7 @@ namespace {
 
         public function getSectionCMSFields(FieldList $fields)
         {
-            $fields->addFieldToTab('Root.Main', $image = UploadField::create('Image', 'Banner image')
-                ->setFolderName('Sections/Section_Banner/Images'));
+            $fields->addFieldToTab('Root.Main', $image = UploadField::create('Image', 'Banner image'));
                 $image->setFolderName('Sections/Section_Banner/Images');
                 $image->setAllowedExtensions(['png','gif','jpeg','jpg']);
             $fields->addFieldToTab('Root.Main', DropdownField::create('ImageHeight', 'Image height',
