@@ -74,7 +74,6 @@ namespace {
             'Name',
             'SectionWidth',
             'DisplaySectionType' => 'Section Type',
-            'SectionHeaderReadable' => 'Show section header',
             'Status'
         ];
 
