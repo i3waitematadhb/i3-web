@@ -33,6 +33,7 @@ namespace {
             $fields->addFieldToTab('Root.Main', $image = UploadField::create('Image'));
                 $image->setFolderName('Sections/Section_ImageWithText/Images');
                 $image->getValidator()->setAllowedExtensions(['png','gif','jpeg','jpg']);
+                $image->setDescription('For best resolution: upload 600x600 size image ');
             $fields->addFieldToTab('Root.Main', HTMLEditorField::create('Content'));
             $fields->addFieldToTab('Root.Main', DropdownField::create('ContentPosition', 'Content position',
                 array(
