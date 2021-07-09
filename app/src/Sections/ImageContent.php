@@ -9,11 +9,11 @@ namespace {
 
     class ImageContent extends Section
     {
-        private static $singular_name = 'Image';
+        private static $singular_name = 'Image Content';
 
         private static $db = [
             'ImageHeight'    => 'Varchar',
-            'ImageAnimation' => 'Varchar',
+            'ImageAnimation' => 'Varchar'
         ];
 
         private static $has_one = [
@@ -30,9 +30,9 @@ namespace {
 
         public function getSectionCMSFields(FieldList $fields)
         {
-            $fields->addFieldToTab('Root.Main', $image = UploadField::create('Image', 'Banner image'));
-            $image->setFolderName('Sections/Section_Banner/Images');
-            $image->setAllowedExtensions(['png','gif','jpeg','jpg']);
+            $fields->addFieldToTab('Root.Main', $image = UploadField::create('Image', 'Image content'));
+                $image->setFolderName('Sections/Section_Banner/Images');
+                $image->setAllowedExtensions(['png','gif','jpeg','jpg']);
             $fields->addFieldToTab('Root.Main', DropdownField::create('ImageHeight', 'Image height',
                 array(
                     'ih-small' => 'Small',
@@ -42,7 +42,6 @@ namespace {
             ));
             $fields->addFieldToTab('Root.Main', DropdownField::create('ImageAnimation', 'Animation',
                 Animation::get()->filter('Archived', false)->map('Name', 'Name')));
-
         }
     }
 }
