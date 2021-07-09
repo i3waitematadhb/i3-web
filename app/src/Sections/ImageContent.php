@@ -2,6 +2,11 @@
 
 namespace {
 
+    use SilverStripe\AssetAdmin\Forms\UploadField;
+    use SilverStripe\Assets\Image;
+    use SilverStripe\Forms\DropdownField;
+    use SilverStripe\Forms\FieldList;
+
     class ImageContent extends Section
     {
         private static $singular_name = 'Image';
@@ -12,7 +17,7 @@ namespace {
         ];
 
         private static $has_one = [
-            'Image' => Image
+            'Image' => Image::class
         ];
 
         private static $owns = [
@@ -20,7 +25,24 @@ namespace {
         ];
 
         private static $defaults = [
-            'ImageHeight' => 'bh-large'
+            'ImageHeight' => 'ih-large'
         ];
+
+        public function getSectionCMSFields(FieldList $fields)
+        {
+            $fields->addFieldToTab('Root.Main', $image = UploadField::create('Image', 'Banner image'));
+            $image->setFolderName('Sections/Section_Banner/Images');
+            $image->setAllowedExtensions(['png','gif','jpeg','jpg']);
+            $fields->addFieldToTab('Root.Main', DropdownField::create('ImageHeight', 'Image height',
+                array(
+                    'ih-small' => 'Small',
+                    'ih-medium'=> 'Medium',
+                    'ih-large' => 'Large'
+                )
+            ));
+            $fields->addFieldToTab('Root.Main', DropdownField::create('ImageAnimation', 'Animation',
+                Animation::get()->filter('Archived', false)->map('Name', 'Name')));
+
+        }
     }
 }
