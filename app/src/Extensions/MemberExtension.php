@@ -36,8 +36,10 @@ namespace {
         public function updateCMSFields(FieldList $fields)
         {
             $fields->addFieldToTab('Root.Main', TextField::create('Position'));
-            $fields->addFieldToTab('Root.Main', UploadField::create('ProfileImage')
-                ->setFolderName('Member/ProfileImages'),'Locale');
+            $fields->addFieldToTab('Root.Main', $image = UploadField::create('ProfileImage'),'Locale');
+                $image->setFolderName('Member/ProfileImages');
+                $image->setAllowedExtensions(['png','gif','jpeg','jpg']);
+
             $fields->addFieldToTab('Root.Main', HTMLEditorField::create('Bio'),'Locale');
 
             $gridConfig = GridFieldConfig_RecordEditor::create(9999);
