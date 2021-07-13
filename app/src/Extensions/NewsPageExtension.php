@@ -50,8 +50,9 @@ namespace {
                 StaffPage::get()->map("ID", "Title")), 'Abstract');
             $fields->addFieldToTab('Root.Main', ListboxField::create('RelatedNews', 'Related news',
                 NewsPage::get()->filter(['Title:not' => $this->owner->Title, 'NewsPageType' => $this->owner->NewsPageType])->map("ID", 'Title')), 'Abstract');
-            $fields->addFieldToTab('Root.Main', UploadField::create('Image', 'Featured image')
-                ->setFolderName('NewsPage/'.$this->owner->URLSegment.'/Image'),'Abstract');
+            $fields->addFieldToTab('Root.Main', $image = UploadField::create('Image', 'Featured image'), 'Abstract');
+                $image->setFolderName('NewsPage/'.$this->owner->URLSegment.'/Image');
+                $image->setAllowedExtensions(['png','gif','jpeg','jpg']);
 
             $fields->removeFieldFromTab('Root.Main', 'FeaturedImage');
             $fields->removeFieldFromTab('Root.Main', 'Author');
