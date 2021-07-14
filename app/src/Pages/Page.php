@@ -49,8 +49,10 @@ namespace {
                 ->setFolderName('PageMenu/Icons'));
             $fields->addFieldToTab('Root.MenuIcon', UploadField::create('PageIconActive', 'Menu icon active')
                 ->setFolderName('PageMenu/Icons'));
-            $fields->addFieldToTab('Root.MenuIcon', UploadField::create('MenuBackground', 'Menu background')
-                ->setFolderName('PageMenu/Background'));
+            $fields->addFieldToTab('Root.MenuIcon', $menubg = UploadField::create('MenuBackground', 'Menu background'));
+                $menubg->setFolderName('PageMenu/Background');
+                $menubg->setAllowedExtensions(['png','gif','jpeg','jpg']);
+
 
             $gridConfig = GridFieldConfig_RecordEditor::create(9999);
             if ($this->Sections()->Count()) {
@@ -88,8 +90,9 @@ namespace {
                 'header-light' => 'Header light',
                 'header-dark'  => 'Header dark'
             )));
-            $fields->addFieldToTab('Root.Settings', UploadField::create('PageBackground', 'Page background')
-                ->setFolderName('Page/Background'));
+            $fields->addFieldToTab('Root.Settings', $pagebg = UploadField::create('PageBackground', 'Page background'));
+                $pagebg->setFolderName('Page/Background');
+                $pagebg->setAllowedExtensions(['png','gif','jpeg','jpg']);
 
             $fields->addFieldToTab('Root.Main', $gridField, 'Metadata');
 
