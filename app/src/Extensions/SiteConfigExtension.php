@@ -20,6 +20,7 @@ namespace {
 
         private static $has_one = [
             'SiteLogo'    => File::class,
+            'SiteLogoDark'=> File::class,
             'AltSiteLogo' => File::class
         ];
 
@@ -33,8 +34,9 @@ namespace {
             /*
              *  Header
              */
-            $fields->addFieldToTab("Root.Header", UploadField::create("SiteLogo")->setFolderName('SiteLogo'));
-            $fields->addFieldToTab("Root.Header", UploadField::create("AltSiteLogo", 'Site logo alt')->setFolderName('SiteLogo'));
+            $fields->addFieldToTab('Root.Header', UploadField::create('SiteLogo')->setFolderName('SiteLogo'));
+            $fields->addFieldToTab('Root.Header', UploadField::create('SiteLogoDark', 'Site logo dark')->setFolderName('SiteLogo'));
+            $fields->addFieldToTab('Root.Header', UploadField::create('AltSiteLogo', 'Site logo alt')->setFolderName('SiteLogo'));
             $fields->addFieldToTab('Root.Header', SliderField::create('SiteLogoWidth', 'Site logo width', '50', '350'));
             $fields->addFieldToTab('Root.Header', DropdownField::create('SiteLogoPosition', 'Site logo position',
                 array(
