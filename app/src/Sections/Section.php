@@ -109,8 +109,9 @@ namespace {
                 $fields->addFieldToTab('Root.Main', HTMLEditorField::create('Content'));
                 $fields->addFieldToTab('Root.Main', DropdownField::create('ContentAnimation', 'Select content animation',
                     Animation::get()->filter('Archived', false)->map('Name', 'Name')));
-                $fields->addFieldToTab('Root.Main', CheckboxField::create('ScrollIcon', 'Show scroll icon'));
             }
+
+            $fields->addFieldToTab('Root.Main', CheckboxField::create('ScrollIcon', 'Show scroll icon'));
 
             /**
              * Section Settings
