@@ -4,7 +4,6 @@ namespace {
 
     use SilverStripe\AssetAdmin\Forms\UploadField;
     use SilverStripe\Assets\Image;
-    use SilverStripe\Forms\CheckboxField;
     use SilverStripe\Forms\DropdownField;
     use SilverStripe\Forms\FieldList;
     use SilverStripe\Forms\HTMLEditor\HTMLEditorField;
@@ -19,7 +18,6 @@ namespace {
             'ImageAnimation'  => 'Varchar',
             'ImageOverlay'    => 'Varchar',
             'ImageHeight'     => 'Varchar',
-            'ScrollIcon'      => 'Boolean',
         ];
 
         private static $has_one = [
@@ -63,7 +61,6 @@ namespace {
             ));
             $fields->addFieldToTab('Root.Main', DropdownField::create('ImageAnimation', 'Animation',
                 Animation::get()->filter('Archived', false)->map('Name', 'Name')));
-            $fields->addFieldToTab('Root.Main', CheckboxField::create('ScrollIcon', 'Show scroll icon'));
         }
     }
 }
