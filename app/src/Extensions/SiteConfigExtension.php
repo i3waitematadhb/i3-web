@@ -26,6 +26,7 @@ namespace {
 
         private static $owns = [
             'SiteLogo',
+            'SiteLogoDark',
             'AltSiteLogo'
         ];
 
