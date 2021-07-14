@@ -4,7 +4,6 @@ namespace {
 
     use SilverStripe\AssetAdmin\Forms\UploadField;
     use SilverStripe\Assets\File;
-    use SilverStripe\Forms\CheckboxField;
     use SilverStripe\Forms\DropdownField;
     use SilverStripe\Forms\FieldList;
     use SilverStripe\Forms\HTMLEditor\HTMLEditorField;
@@ -17,7 +16,6 @@ namespace {
             'Content'          => 'HTMLText',
             'ContentAnimation' => 'Varchar',
             'VideoHeight'      => 'Text',
-            'ScrollIcon'       => 'Boolean'
         ];
 
         private static $has_one = [
@@ -49,7 +47,6 @@ namespace {
                     'bh-large' => 'Large'
                 )
             ));
-            $fields->addFieldToTab('Root.Main', CheckboxField::create('ScrollIcon', 'Show scroll icon'));
         }
     }
 }
