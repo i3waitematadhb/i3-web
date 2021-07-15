@@ -111,8 +111,6 @@ namespace {
                     Animation::get()->filter('Archived', false)->map('Name', 'Name')));
             }
 
-            $fields->addFieldToTab('Root.Main', CheckboxField::create('ScrollIcon', 'Show scroll icon'));
-
             /**
              * Section Settings
              */
@@ -188,6 +186,7 @@ namespace {
             $instance->getSectionCMSFields($fields);
 
             $fields->addFieldToTab('Root.CodeEditor', CodeEditorField::create('CodeEditor'));
+            $fields->addFieldToTab('Root.Main', CheckboxField::create('ScrollIcon', 'Show scroll icon'));
             $fields->addFieldToTab('Root.Main', CheckboxField::create('Archived'));
             $fields->addFieldToTab('Root.Main', HiddenField::create('Sort'));
 
