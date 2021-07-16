@@ -6,6 +6,7 @@ namespace {
     use CWP\CWP\PageTypes\NewsPage;
     use SilverStripe\Assets\Image;
     use SilverStripe\Forms\ListboxField;
+    use SilverStripe\Forms\TextareaField;
     use SilverStripe\Forms\TextField;
 
     class StaffPage extends Page
@@ -50,6 +51,7 @@ namespace {
             $fields->addFieldToTab('Root.Main', ListboxField::create('TeamCategory', 'Team category', $this->TeamCategories()), 'Sections');
             $fields->addFieldToTab('Root.Main', SortableUploadField::create('ProfileImages', 'Profile Images')
                 ->setFolderName('StaffPage/'. $this->owner->Title .'/Images'),'Sections');
+            $fields->addFieldToTab('Root.Main', TextareaField::create('Blob'), 'Sections');
             return $fields;
         }
     }
