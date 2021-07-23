@@ -13,7 +13,7 @@ namespace {
 
         private static $db = [
             'ImageHeight'    => 'Varchar',
-            'ImageAnimation' => 'Varchar'
+            'ImageAnimation' => 'Varchar',
         ];
 
         private static $has_one = [
