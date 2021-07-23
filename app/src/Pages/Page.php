@@ -24,15 +24,11 @@ namespace {
 
         private static $has_one = [
             'PageIcon' => File::class,
-            'PageIconActive' => File::class,
-            'MenuBackground' => Image::class,
             'PageBackground' => Image::class
         ];
 
         private static $owns = [
             'PageIcon',
-            'PageIconActive',
-            'MenuBackground',
             'PageBackground'
         ];
 
@@ -47,12 +43,6 @@ namespace {
 
             $fields->addFieldToTab('Root.MenuIcon', UploadField::create('PageIcon', 'Menu icon')
                 ->setFolderName('PageMenu/Icons'));
-            $fields->addFieldToTab('Root.MenuIcon', UploadField::create('PageIconActive', 'Menu icon active')
-                ->setFolderName('PageMenu/Icons'));
-            $fields->addFieldToTab('Root.MenuIcon', $menubg = UploadField::create('MenuBackground', 'Menu background'));
-                $menubg->setFolderName('PageMenu/Background');
-                $menubg->setAllowedExtensions(['png','gif','jpeg','jpg']);
-
 
             $gridConfig = GridFieldConfig_RecordEditor::create(9999);
             if ($this->Sections()->Count()) {
