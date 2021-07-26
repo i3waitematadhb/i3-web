@@ -10,6 +10,7 @@ namespace {
     use SilverStripe\Forms\DropdownField;
     use SilverStripe\Forms\GridField\GridField;
     use SilverStripe\Forms\GridField\GridFieldConfig_RecordEditor;
+    use SilverStripe\Forms\TextareaField;
     use SilverStripe\Forms\TextField;
     use SilverStripe\ORM\PaginatedList;
     use Symbiote\GridFieldExtensions\GridFieldEditableColumns;
@@ -20,6 +21,7 @@ namespace {
         private static $db = [
             'HeaderTheme' => 'Varchar',
             'EnableFullPage' => 'Boolean',
+            'MenuContent' => 'Text',
         ];
 
         private static $has_one = [
@@ -49,6 +51,8 @@ namespace {
             $fields->addFieldToTab('Root.MenuIcon', $pagemenuImage = UploadField::create('PageMenuImage', 'Page menu image'));
             $pagemenuImage->setFolderName('PageMenu/Icons');
             $pagemenuImage->setAllowedExtensions(['png','gif','jpeg','jpg']);
+
+            $fields->addFieldToTab('Root.MenuIcon', TextareaField::create('MenuContent'));
 
             $gridConfig = GridFieldConfig_RecordEditor::create(9999);
             if ($this->Sections()->Count()) {
