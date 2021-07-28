@@ -19,9 +19,10 @@ namespace {
     class Page extends SiteTree
     {
         private static $db = [
-            'HeaderTheme' => 'Varchar',
+            'HeaderTheme'    => 'Varchar',
             'EnableFullPage' => 'Boolean',
-            'MenuContent' => 'Text',
+            'MenuContent'    => 'Text',
+            'Icon'           => 'Varchar',
         ];
 
         private static $has_one = [
@@ -47,6 +48,7 @@ namespace {
 
             $fields->addFieldToTab('Root.MenuIcon', UploadField::create('PageIcon', 'Menu icon')
                 ->setFolderName('PageMenu/Icons'));
+            $fields->addFieldToTab('Root.MenuIcon', TextField::create('Icon', 'Menu icon'));
 
             $fields->addFieldToTab('Root.MenuIcon', $pagemenuImage = UploadField::create('PageMenuImage', 'Page menu image'));
             $pagemenuImage->setFolderName('PageMenu/Icons');
