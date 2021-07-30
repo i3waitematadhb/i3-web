@@ -41,7 +41,7 @@ namespace {
 
         function TeamCategories()
         {
-            return array('i3','eCALD','Safety in Practice','Alumni','Clinical Leader','Fellow','Intern','Contractor');
+            return array('i3','eCALD','Safety in Practice','Alumni','Clinical Leader','Fellow','Intern','Contractor', 'HIG');
         }
 
         public function getCMSFields()
