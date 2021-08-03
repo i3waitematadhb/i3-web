@@ -4,8 +4,7 @@
     "description": "The SilverStripe Framework Installer",
     "require": {
         "php": "^7.1 || ^8",
-        "silverstripe/recipe-plugin": "^1.2",
-        "silverstripe/recipe-cms": "4.8.0@stable",
+        "silverstripe/recipe-plugin": "^1.5",
         "silverstripe/login-forms": "4.4.1@stable",
         "cwp/cwp": "dev-master",
         "cwp/starter-theme": "dev-i3-theme",
@@ -18,7 +17,18 @@
         "tractorcow/silverstripe-sliderfield": "dev-master",
         "symbiote/silverstripe-multivaluefield": "^5.0",
         "jinjie/codeeditorfield": "^0.0.4",
-        "silverstripe/tagfield": "2.3.*"
+        "silverstripe/tagfield": "2.3.*",
+        "silverstripe/admin": "1.8.0@stable",
+        "silverstripe/asset-admin": "1.8.0@stable",
+        "silverstripe/campaign-admin": "1.8.0@stable",
+        "silverstripe/cms": "4.8.0@stable",
+        "silverstripe/errorpage": "1.8.0@stable",
+        "silverstripe/graphql": "^4",
+        "silverstripe/recipe-core": "4.8.0@stable",
+        "silverstripe/reports": "4.8.0@stable",
+        "silverstripe/siteconfig": "4.8.0@stable",
+        "silverstripe/versioned": "1.8.0@stable",
+        "silverstripe/versioned-admin": "1.8.0@stable"
     },
     "require-dev": {
         "sminnee/phpunit": "^5.7",
@@ -41,7 +51,22 @@
         ],
         "expose": [
             "app/css"
-        ]
+        ],
+        "project-dependencies-installed": {
+            "php": "^7.1 || ^8",
+            "silverstripe/admin": "1.8.0@stable",
+            "silverstripe/asset-admin": "1.8.0@stable",
+            "silverstripe/campaign-admin": "1.8.0@stable",
+            "silverstripe/cms": "4.8.0@stable",
+            "silverstripe/errorpage": "1.8.0@stable",
+            "silverstripe/graphql": "^4",
+            "silverstripe/recipe-core": "4.8.0@stable",
+            "silverstripe/recipe-plugin": "^1.5",
+            "silverstripe/reports": "4.8.0@stable",
+            "silverstripe/siteconfig": "4.8.0@stable",
+            "silverstripe/versioned": "1.8.0@stable",
+            "silverstripe/versioned-admin": "1.8.0@stable"
+        }
     },
     "config": {
         "process-timeout": 600
@@ -53,5 +78,8 @@
         }
     ],
     "prefer-stable": true,
-    "minimum-stability": "dev"
+    "minimum-stability": "dev",
+    "provide": {
+        "silverstripe/recipe-cms": "4.8.0"
+    }
 }
