@@ -21,6 +21,17 @@ CWP\CWP\PageTypes\NewsPage:
 CWP\CWP\PageTypes\NewsHolder:
   extensions:
     - NewsHolderExtension
+SilverStripe\Control\Director:
+  rules:
+    'graphql': '%$SilverStripe\GraphQL\Controller.default'
+SilverStripe\Core\Injector\Injector:
+  SilverStripe\GraphQL\Controller.default:
+    class: SilverStripe\GraphQL\Controller
+    constructor:
+      schemaKey: default
+SilverStripe\GraphQL\Schema\Schema:
+  schemas:
+    default:
 # UTF8MB4 has limited support in older MySQL versions.
 # Remove this configuration if you experience issues.
 ---
