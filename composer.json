@@ -50,8 +50,7 @@
             "web.config"
         ],
         "expose": [
-            "app/css",
-            "app/_graphql"
+            "app/css"
         ],
         "project-dependencies-installed": {
             "php": "^7.1 || ^8",

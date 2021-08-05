@@ -32,8 +32,6 @@ SilverStripe\Core\Injector\Injector:
 SilverStripe\GraphQL\Schema\Schema:
   schemas:
     default:
-      src:
-        - app/_graphql
 Silverstripe\GraphQL\Manager:
   schemas:
     default:
