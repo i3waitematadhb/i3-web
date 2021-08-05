@@ -32,6 +32,14 @@ SilverStripe\Core\Injector\Injector:
 SilverStripe\GraphQL\Schema\Schema:
   schemas:
     default:
+      src:
+        - app/_graphql
+Silverstripe\GraphQL\Manager:
+  schemas:
+    default:
+  authenticators:
+    class: SilverStripe\GraphQL\Auth\BasicAuthAuthenticator
+    priority: 10
 # UTF8MB4 has limited support in older MySQL versions.
 # Remove this configuration if you experience issues.
 ---
