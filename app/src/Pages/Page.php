@@ -48,8 +48,8 @@ namespace {
 
             $fields->addFieldToTab('Root.MenuIcon', UploadField::create('PageIcon', 'Menu icon')
                 ->setFolderName('PageMenu/Icons'));
-            $fields->addFieldToTab('Root.MenuIcon', TextField::create('Icon', 'Menu icon'));
-
+            $fields->addFieldToTab('Root.MenuIcon', TextField::create('Icon', 'Menu icon')
+                ->setDescription('E.g fad fa-book <br>Please refer&nbsp;<a href="https://fontawesome.com/v5.15/icons?d=gallery&p=2">FontAwesome</a>&nbsp;for more icon options.'));
             $fields->addFieldToTab('Root.MenuIcon', $pagemenuImage = UploadField::create('PageMenuImage', 'Page menu image'));
             $pagemenuImage->setFolderName('PageMenu/Icons');
             $pagemenuImage->setAllowedExtensions(['png','gif','jpeg','jpg']);
